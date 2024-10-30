@@ -4,22 +4,22 @@ pygame.init()
 tamanho = (1000,592)
 clock = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanho )
-icone = pygame.image.load("assets/icone.ico")
+icone = pygame.image.load("recursos/icone.ico")
 pygame.display.set_icon(icone)
 pygame.display.set_caption('Corrida Maluca') #texto em cima 
 branco = (255,255,255)
 preto = (0,0,0)
-fundo = pygame.image.load('assets/fundo.png')
-carro1 = pygame.image.load('assets/carro1.png')
-carro2 = pygame.image.load('assets/carro2.png')
+fundo = pygame.image.load('recursos/fundo.png')
+carro1 = pygame.image.load('recursos/carro1.png')
+carro2 = pygame.image.load('recursos/carro2.png')
 
 movXCar1 = 0 #seria o eixo x que se movimenta
 movXCar2 = 0
 posYcar1 = 50
 posYcar2 = 180
-vitoria = pygame.mixer.Sound('assets/vitoria.mp3')
+vitoria = pygame.mixer.Sound('recursos/vitoria.mp3')
 vitoria.set_volume(0.5)
-pygame.mixer.music.load('assets/trilha.mp3')
+pygame.mixer.music.load('recursos/trilha.mp3')
 pygame.mixer.music.play(-1)#looping
 acabou = False
 somDaVitoria = False
