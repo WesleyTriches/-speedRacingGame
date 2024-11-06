@@ -54,41 +54,41 @@ while True:
     if movXCar1 >= movXCar2 and movXCar1 >= movXCar3:
         winner = 'Vermelho'
         if movXCar2 >= movXCar3:  # se o carro amarelo é o segundo colado
-            distanciaPixel = movXCar1 - movXCar2
+            distanciaPixel = abs(movXCar1 - movXCar2)
             secondPlace = 'Amarelo'
             thirdPlace = 'Azul'
-            distancia_segundo_terceiro = movXCar2 - movXCar3
+            distancia_segundo_terceiro = abs(movXCar2 - movXCar3)
         else:  #o carro azul é o segundo colocado
-            distanciaPixel = movXCar1 - movXCar3
+            distanciaPixel = abs(movXCar1 - movXCar3)
             secondPlace = 'Azul'
             thirdPlace = 'Amarelo'
-            distancia_segundo_terceiro = movXCar3 - movXCar2
+            distancia_segundo_terceiro = abs(movXCar3 - movXCar2)
 
     elif movXCar2 >= movXCar1 and movXCar2 >= movXCar3:
         winner = 'Amarelo'
         if movXCar1 >= movXCar3:  #se o carro vermelho é o segundo colocado
-            distanciaPixel = movXCar2 - movXCar1
+            distanciaPixel = abs(movXCar2 - movXCar1)
             secondPlace = 'Vermelho'
             thirdPlace = 'Azul'
-            distancia_segundo_terceiro = movXCar1 - movXCar3
+            distancia_segundo_terceiro = abs(movXCar1 - movXCar3)
         else:  #o carro azul é o segundo colocado
-            distanciaPixel = movXCar2 - movXCar3
+            distanciaPixel = abs(movXCar2 - movXCar3)
             secondPlace = 'Azul'
             thirdPlace = 'Vermelho'
-            distancia_segundo_terceiro = movXCar3 - movXCar1
+            distancia_segundo_terceiro = abs(movXCar3 - movXCar1)
 
     else:  #o carro azul é o vencedor
         winner = 'Azul'
         if movXCar1 > movXCar2:  #o carro vermelho é o segundo colocado
-            distanciaPixel = movXCar3 - movXCar1
+            distanciaPixel = abs(movXCar3 - movXCar1)
             secondPlace = 'Vermelho'
             thirdPlace = 'Amarelo'
-            distancia_segundo_terceiro = movXCar3 - movXCar1
+            distancia_segundo_terceiro = abs(movXCar3 - movXCar1)
         else:  #o carro amarelo é o segundo colocado
-            distanciaPixel = movXCar1 - movXCar2
+            distanciaPixel = abs(movXCar1 - movXCar2)
             secondPlace = 'Amarelo'
             thirdPlace = 'Vermelho'
-            distancia_segundo_terceiro = movXCar2 - movXCar1
+            distancia_segundo_terceiro = abs(movXCar2 - movXCar1)
 
     #textos winners
     fonte = pygame.font.Font('freesansbold.ttf',20)#ttf é o arquivo da font
@@ -101,30 +101,30 @@ while True:
     
     if movXCar1 > 1000:
         movXCar1 = 0
-        posYcar1 = 340
+        posYcar1 = 330
         
     if movXCar2 > 1000:
         movXCar2 = 0
-        posYcar2 = 400
+        posYcar2 = 410
 
     if movXCar3 > 1000:
         movXCar3 = 0
-        posYCar3 = 500
+        posYCar3 = 490
         
     fonte = pygame.font.Font('freesansbold.ttf',60)#ttf é o arquivo da font
     textoVermelho = fonte.render('Vermelho Ganhou!', True, branco)
     textoAmarelo = fonte.render('Amarelo Ganhou!', True, branco)
     textoAzul = fonte.render('Azul Ganhou!', True, branco)
         
-    if posYcar1 == 320 and movXCar1 >= 900 and (movXCar1 > movXCar2 and movXCar1 > movXCar3):
+    if posYcar1 == 330 and movXCar1 >= 900 and (movXCar1 > movXCar2 and movXCar1 > movXCar3):
         tela.blit(textoVermelho, (270,70))
         acabou = True
         
-    elif posYcar2 == 400 and movXCar2 >= 900 and (movXCar2 > movXCar1 and movXCar2 > movXCar3):
+    elif posYcar2 == 410 and movXCar2 >= 900 and (movXCar2 > movXCar1 and movXCar2 > movXCar3):
         tela.blit(textoAmarelo, (270,180))
         acabou = True
 
-    elif posYCar3 == 480 and movXCar3 >= 900 and (movXCar3 > movXCar1 and movXCar3 > movXCar2):
+    elif posYCar3 == 490 and movXCar3 >= 900 and (movXCar3 > movXCar1 and movXCar3 > movXCar2):
         tela.blit(textoAzul, (270,180))
         acabou = True
 
