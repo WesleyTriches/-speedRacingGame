@@ -127,7 +127,29 @@ while True:
     elif posYCar3 == 490 and movXCar3 >= 900 and (movXCar3 > movXCar1 and movXCar3 > movXCar2):
         tela.blit(textoAzul, (270,180))
         acabou = True
+        
+    if acabou:
+        tela.fill(preto)
+        novo_fundo = pygame.image.load('recursos/finalbackground.png')
+        tela.blit(novo_fundo, (0, 0))
 
+        fonte_final = pygame.font.SysFont('arial', 30)
+        distancia_primeiro_segundo = abs(movXCar1 - movXCar2) if winner == 'Vermelho' and secondPlace == 'Amarelo' or winner == 'Amarelo' and secondPlace == 'Vermelho' else abs(movXCar1 - movXCar3) if winner == 'Vermelho' else abs(movXCar2 - movXCar3)
+        distancia_segundo_terceiro = abs(movXCar2 - movXCar3) if thirdPlace == 'Azul' else abs(movXCar1 - movXCar2)
+
+        # Textos para cada colocação com distâncias
+        texto_vencedor_final = fonte_final.render(f'1º lugar: Carro {winner}', True, branco)
+        texto_distancia_1_2 = fonte_final.render(f'Distância para o 2º lugar: {distancia_primeiro_segundo} pixels', True, branco)
+        texto_segundo_final = fonte_final.render(f'2º lugar: Carro {secondPlace}', True, branco)
+        texto_distancia_2_3 = fonte_final.render(f'Distância para o 3º lugar: {distancia_segundo_terceiro} pixels', True, branco)
+        texto_terceiro_final = fonte_final.render(f'3º lugar: Carro {thirdPlace}', True, branco)
+
+        tela.blit(texto_vencedor_final, (100, 100)) 
+        tela.blit(texto_distancia_1_2, (100, 160))  
+        tela.blit(texto_segundo_final, (100, 220))  
+        tela.blit(texto_distancia_2_3, (100, 280))  
+        tela.blit(texto_terceiro_final, (100, 340)) 
+        
     pygame.display.update()
     clock.tick(60)
 pygame.quit()
