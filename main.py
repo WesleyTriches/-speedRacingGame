@@ -10,6 +10,8 @@ pygame.display.set_icon(icone)
 pygame.display.set_caption('Corrida Maluca') #texto em cima 
 branco = (255,255,255)
 preto = (0,0,0)
+vermelho = (255, 0, 0)
+amarelo = (255, 255, 0)
 fundo = pygame.image.load('recursos/fundo.png')
 carro1 = pygame.image.load('recursos/carro1.png')
 carro2 = pygame.image.load('recursos/carro2.png')
@@ -107,23 +109,43 @@ while True:
         novo_fundo = pygame.image.load('recursos/finalbackground.png')
         tela.blit(novo_fundo, (0, 0))
 
-        fonte_final = pygame.font.SysFont('arial', 30)
+        # Definição das fontes e cores
+        fonte_titulo = pygame.font.Font('freesansbold.ttf', 50)
+        fonte_colocacao = pygame.font.Font('freesansbold.ttf', 40)
+        fonte_distancia = pygame.font.Font('freesansbold.ttf', 30)
+        cor_titulo = (255, 215, 0)  # Dourado para o título
+
+        # Cálculo das distâncias entre colocações
         distancia_primeiro_segundo = abs(movXCar1 - movXCar2) if firstPlace == 'Vermelho' and secondPlace == 'Amarelo' or firstPlace == 'Amarelo' and secondPlace == 'Vermelho' else abs(movXCar1 - movXCar3) if firstPlace == 'Vermelho' else abs(movXCar2 - movXCar3)
         distancia_segundo_terceiro = abs(movXCar2 - movXCar3) if thirdPlace == 'Azul' else abs(movXCar1 - movXCar2)
 
-        # Textos para cada colocação com distâncias
-        texto_vencedor_final = fonte_final.render(f'1º lugar: Carro {firstPlace}', True, branco)
-        texto_distancia_1_2 = fonte_final.render(f'Distância para o 2º lugar: {distancia_primeiro_segundo} pixels', True, branco)
-        texto_segundo_final = fonte_final.render(f'2º lugar: Carro {secondPlace}', True, branco)
-        texto_distancia_2_3 = fonte_final.render(f'Distância para o 3º lugar: {distancia_segundo_terceiro} pixels', True, branco)
-        texto_terceiro_final = fonte_final.render(f'3º lugar: Carro {thirdPlace}', True, branco)
+        # Textos
+        titulo = fonte_titulo.render("Classificação Final", True, cor_titulo)
+        texto_vencedor_final = fonte_colocacao.render(f'1º Lugar: Carro {firstPlace}', True, amarelo)
+        texto_distancia_1_2 = fonte_distancia.render(f'Distância para o 2º lugar: {distancia_primeiro_segundo} pixels', True, branco)
+        texto_segundo_final = fonte_colocacao.render(f'2º Lugar: Carro {secondPlace}', True, amarelo)
+        texto_distancia_2_3 = fonte_distancia.render(f'Distância para o 3º lugar: {distancia_segundo_terceiro} pixels', True, branco)
+        texto_terceiro_final = fonte_colocacao.render(f'3º Lugar: Carro {thirdPlace}', True, amarelo)
 
-        tela.blit(texto_vencedor_final, (100, 100)) 
-        tela.blit(texto_distancia_1_2, (100, 160))  
-        tela.blit(texto_segundo_final, (100, 220))  
-        tela.blit(texto_distancia_2_3, (100, 280))  
-        tela.blit(texto_terceiro_final, (100, 340)) 
-        
+        # Desenhar o retângulo translúcido com borda
+        overlay = pygame.Surface((800, 450))  # Tamanho do retângulo
+        overlay.set_alpha(180)  # Transparência
+        overlay.fill((0, 0, 0))  # Cor do retângulo (preto com transparência)
+        tela.blit(overlay, (100, 50))  # Posição do retângulo na tela
+
+        # Desenhar a borda ao redor do retângulo
+        pygame.draw.rect(tela, amarelo, (100, 50, 800, 450), 5)  # Borda amarela de 5 pixels
+
+        # Exibir o título no topo do retângulo
+        tela.blit(titulo, (300, 60))
+
+        # Exibir os textos centralizados dentro do retângulo, com espaçamento adequado
+        tela.blit(texto_vencedor_final, (150, 150))
+        tela.blit(texto_distancia_1_2, (150, 210))
+        tela.blit(texto_segundo_final, (150, 270))
+        tela.blit(texto_distancia_2_3, (150, 330))
+        tela.blit(texto_terceiro_final, (150, 390))
+            
     pygame.display.update()
     clock.tick(60)
 pygame.quit()
