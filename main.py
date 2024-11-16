@@ -1,5 +1,5 @@
 import pygame, random, time 
-from funcoes import mover_carros, contador_texto, carros_segunda_pista, posicao_inicial
+from funcoes import mover_carros, contador_texto, contador_texto2, carros_segunda_pista, posicao_inicial
 
 pygame.init()
 tamanho = (1000,592)
@@ -45,12 +45,12 @@ while True:
     distanciaPixel = 0
     if movXCar1 >= movXCar2 and movXCar1 >= movXCar3:
         firstPlace = 'Vermelho'
-        if movXCar2 >= movXCar3:  # se o carro amarelo é o segundo colado
+        if movXCar2 >= movXCar3:  # Se o carro amarelo é o segundo colocado
             distanciaPixel = abs(movXCar1 - movXCar2)
             secondPlace = 'Amarelo'
             thirdPlace = 'Azul'
             distancia_segundo_terceiro = abs(movXCar2 - movXCar3)
-        else:  #o carro azul é o segundo colocado
+        else:  # O carro azul é o segundo colocado
             distanciaPixel = abs(movXCar1 - movXCar3)
             secondPlace = 'Azul'
             thirdPlace = 'Amarelo'
@@ -58,33 +58,36 @@ while True:
 
     elif movXCar2 >= movXCar1 and movXCar2 >= movXCar3:
         firstPlace = 'Amarelo'
-        if movXCar1 >= movXCar3:  #se o carro vermelho é o segundo colocado
+        if movXCar1 >= movXCar3:   #Se o carro vermelho é o segundo colocado
             distanciaPixel = abs(movXCar2 - movXCar1)
             secondPlace = 'Vermelho'
             thirdPlace = 'Azul'
             distancia_segundo_terceiro = abs(movXCar1 - movXCar3)
-        else:  #o carro azul é o segundo colocado
+        else:  #O carro azul é o segundo colocado
             distanciaPixel = abs(movXCar2 - movXCar3)
             secondPlace = 'Azul'
             thirdPlace = 'Vermelho'
             distancia_segundo_terceiro = abs(movXCar3 - movXCar1)
 
-    else:  #o carro azul é o vencedor
+    else:  #O carro azul é o vencedor
         firstPlace = 'Azul'
         if movXCar1 > movXCar2:  #o carro vermelho é o segundo colocado
             distanciaPixel = abs(movXCar3 - movXCar1)
             secondPlace = 'Vermelho'
             thirdPlace = 'Amarelo'
             distancia_segundo_terceiro = abs(movXCar3 - movXCar1)
-        else:  #o carro amarelo é o segundo colocado
+        else:  # O carro amarelo é o segundo colocado
             distanciaPixel = abs(movXCar1 - movXCar2)
             secondPlace = 'Amarelo'
             thirdPlace = 'Vermelho'
             distancia_segundo_terceiro = abs(movXCar2 - movXCar1)
 
-    #textos winners função
-    contador_texto(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, branco)
-    #funcao que atualiza os carros para as posicoes da segunda pista
+    # Textos winners funcao
+    if posYCar1 == 25 and posYCar2 == 115 and posYCar3 == 205:
+        contador_texto(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, amarelo)
+    else:
+        contador_texto2(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, amarelo)
+    # Funcao que atualiza os carros para as posicoes da segunda pista
     movXCar1, movXCar2, movXCar3, posYCar1, posYCar2, posYCar3 = carros_segunda_pista(movXCar1, movXCar2, movXCar3, posYCar1, posYCar2, posYCar3)
         
     fonte = pygame.font.Font('freesansbold.ttf',60)#ttf é o arquivo da font
