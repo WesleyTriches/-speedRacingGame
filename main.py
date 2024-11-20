@@ -1,5 +1,5 @@
 import pygame, random, time 
-from funcoes import mover_carros, contador_texto, contador_texto2, carros_segunda_pista, posicao_inicial
+from funcoes import mover_carros, contador_texto_embaixo, contador_texto_cima, carros_segunda_pista, posicao_inicial
 
 pygame.init()
 tamanho = (1000,592)
@@ -84,9 +84,9 @@ while True:
 
     # Textos winners funcao
     if posYCar1 == 25 and posYCar2 == 115 and posYCar3 == 205:
-        contador_texto(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, amarelo)
+        contador_texto_embaixo(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, amarelo)
     else:
-        contador_texto2(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, amarelo)
+        contador_texto_cima(tela, firstPlace, secondPlace, thirdPlace, distanciaPixel, distancia_segundo_terceiro, amarelo)
     # Funcao que atualiza os carros para as posicoes da segunda pista
     movXCar1, movXCar2, movXCar3, posYCar1, posYCar2, posYCar3 = carros_segunda_pista(movXCar1, movXCar2, movXCar3, posYCar1, posYCar2, posYCar3)
         
